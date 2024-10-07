@@ -7,7 +7,6 @@ A powerful CLI tool to check the size of files and directories.
 - [x] Check sizes of files and directories
 - [x] Set size limits and get warnings when exceeded
 - [x] Configurable via command-line arguments
-- [x] Written in TypeScript for better maintainability and type safety
 - [ ] Configurable via a configuration file
 - [ ] Use regex patterns to match specific filesenhancement)*
 - [ ] Colorized output for better readability
