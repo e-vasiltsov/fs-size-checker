@@ -16,6 +16,23 @@ Legend:
 - [x] Implemented feature
 - [ ] Planned feature
 
+## Key Characteristics
+
+- **Zero Dependencies**: This project is built without any external runtime dependencies, ensuring a lightweight and secure installation.
+- **Object-Oriented Programming (OOP) Approach**: Utilizes OOP principles for better code organization, maintainability, and extensibility.
+- **TypeScript**: Written in TypeScript for enhanced type safety and better developer experience.
+- **SOLID Principles**: Adheres to SOLID principles of object-oriented design, promoting clean and maintainable code.
+- **Extensible Architecture**: Designed with extensibility in mind, making it easy to add new features or modify existing ones.
+- **Cross-platform Compatibility**: Works on Windows, macOS, and Linux operating systems.
+- **Comprehensive Test Suite**: Includes a robust set of unit and integration tests to ensure reliability.
+- **Well-documented**: Provides clear and comprehensive documentation for easy understanding and usage.
+
+## Security
+
+- No execution of external code or scripts
+- Strict input validation to prevent potential vulnerabilities
+- Read-only operations ensure no modifications to your file system
+
 ## Installation
 
 You can install fs-size-checker globally using npm:
