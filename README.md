@@ -34,13 +34,7 @@ Legend:
 
 ## Installation
 
-You can install fs-size-checker globally using npm:
-
-```bash
-npm install -g fs-size-checker
-```
-
-Or, if you prefer to use it as a development dependency in your project:
+Prefer to use it as a development dependency in your project:
 
 ```bash
 npm install --save-dev fs-size-checker
@@ -48,27 +42,43 @@ npm install --save-dev fs-size-checker
 
 ## Usage
 
-### Command Line Interface
+### Using as an npm script
 
-Basic usage:
+You can also add `fs-size-checker` as a script in your `package.json` file. This is useful for projects where you want to check file sizes as part of your development or build process.
+
+Add one of the following scripts to your `package.json`:
+
+Examples:
+
+1. Using a specific directory and size limit in KB:
+
+```json
+{
+  "scripts": {
+    "check-size": "fs-size-checker ./dist 50000"
+  }
+}
+```
+
+2. Checking a specific file with a size limit in KB:
+
+```json
+{
+  "scripts": {
+    "check-file-size": "fs-size-checker ./dist/index.js 1000"
+  }
+}
+```
+
+Run it with:
 
 ```bash
-fs-size-checker <path> <max_size>
+npm run check-size
 ```
 
 Options:
 - `<path>`: The path to check. Can include directory and file matching.
-- `<max_size>`: The maximum allowed size (a positive number).
-
-Examples:
-
-```bash
-# Check size of a directory
-fs-size-checker ./dist 50000
-
-# Check size of file
-fs-size-checker ./dist/index.js 1000
-```
+- `<max_size>`: The maximum allowed size (a positive number) in KB.
 
 ## Development
 
