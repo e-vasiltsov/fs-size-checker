@@ -114,6 +114,24 @@ npm run check-size
 - `--unit` or `-u`: The unit for the size ( B ). If not specified, defaults to B (bytes). Can be specified multiple times, corresponding to each path.
 - `--help` or `-h`: Display the help message.
 
+## Exit Codes and Error Handling
+
+fs-size-checker uses exit codes to communicate the result of the size check:
+
+- Exit code 0: All checked paths are within their specified size limits.
+- Exit code 1: One or more checked paths exceed their specified size limits, or an error occurred during execution.
+
+When a size limit is exceeded, fs-size-checker will:
+
+1. Print a warning message to the console for each path that exceeds its limit.
+2. Continue checking all specified paths.
+3. Exit with code 1 after all checks are complete, if any limits were exceeded.
+
+This approach ensures that:
+- All specified paths are checked, even if earlier ones exceed their limits.
+- The tool provides immediate feedback for each exceeded limit.
+- Scripts or CI/CD pipelines can easily detect when any limit has been exceeded.
+
 ## Development
 
 To set up the project for development:
