@@ -10,6 +10,7 @@ A powerful CLI tool to check the size of files and directories.
 - [ ] Configurable via a configuration file
 - [ ] Use regex patterns to match specific filesenhancement)*
 - [ ] Colorized output for better readability
+- [ ] Support for multiple units of measurement (B, KB, MB, GB, TB)
 
 Legend:
 - [x] Implemented feature
@@ -34,13 +35,34 @@ Legend:
 
 ## Installation
 
-Prefer to use it as a development dependency in your project:
+You can install fs-size-checker globally using npm:
 
+```bash
+npm install -g fs-size-checker
+```
+
+Or, if you prefer to use it as a development dependency in your project:
 ```bash
 npm install --save-dev fs-size-checker
 ```
 
 ## Usage
+
+### Basic Usage
+
+You can run fs-size-checker directly from the command line after installing it globally:
+
+```bash
+fs-size-checker <path> <max_size> <unit>
+```
+
+For example:
+
+```bash
+fs-size-checker ./dist 50000 B
+```
+
+This command checks if the ./dist directory exceeds 50000 B.
 
 ### Using as an npm script
 
@@ -65,7 +87,7 @@ Examples:
 ```json
 {
   "scripts": {
-    "check-file-size": "fs-size-checker --path ./dist/index.js --max-size 1000 --unit B"
+    "check-size": "fs-size-checker --path ./dist/index.js --max-size 1000 --unit B"
   }
 }
 ```
@@ -75,7 +97,7 @@ Examples:
 ```json
 {
   "scripts": {
-    "check-file-size": "fs-size-checker ./dist 1000 B"
+    "check-size": "fs-size-checker ./dist 1000 B"
   }
 }
 ```
@@ -92,6 +114,24 @@ npm run check-size
 - `--max-size` or `-m`: The maximum allowed size (a positive number). Can be specified multiple times, corresponding to each path.
 - `--unit` or `-u`: The unit for the size ( B ). If not specified, defaults to B (bytes). Can be specified multiple times, corresponding to each path.
 - `--help` or `-h`: Display the help message.
+
+## Exit Codes and Error Handling
+
+fs-size-checker uses exit codes to communicate the result of the size check:
+
+- Exit code 0: All checked paths are within their specified size limits.
+- Exit code 1: One or more checked paths exceed their specified size limits, or an error occurred during execution.
+
+When a size limit is exceeded, fs-size-checker will:
+
+1. Print a warning message to the console for each path that exceeds its limit.
+2. Continue checking all specified paths.
+3. Exit with code 1 after all checks are complete, if any limits were exceeded.
+
+This approach ensures that:
+- All specified paths are checked, even if earlier ones exceed their limits.
+- The tool provides immediate feedback for each exceeded limit.
+- Scripts or CI/CD pipelines can easily detect when any limit has been exceeded.
 
 ## Development
 

@@ -46,7 +46,7 @@ export class CliArgumentParser implements ArgumentParser<string[]> {
 
   private printUsage() {
     this.logger.info(`
-Usage: fs-size-checker [options] <path> <max_size> [unit]
+Usage: fs-size-checker [options] --path <path> --max-size <max_size> --unit <unit>
 
 Options:
   -p, --path <path>       The path (directory, file) to check
@@ -56,6 +56,10 @@ Options:
 
 You can also use positional arguments:
   fs-size-checker <path> <max_size> [unit]
+
+Examples:
+  fs-size-checker --path ./dist --max-size 50 --unit B
+  fs-size-checker ./dist 50 B
   `);
   }
 }
