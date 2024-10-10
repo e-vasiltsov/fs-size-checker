@@ -5,6 +5,7 @@ import { LocalCrossPlatformPath } from "../services/cross-platform-path";
 import { NodeFileSystem } from "../services/node-file-system.service";
 import { LocalDirectoryChecker } from "../services/local-directory-cheker";
 import { LocalSizeCalculator } from "../services/size-calculator";
+import { CliArgumentParser } from "../services/cli-argument-parser";
 
 export class AppFactory {
   static createCli(): FileSystemSizeCheckerCli {
@@ -16,6 +17,7 @@ export class AppFactory {
     });
     const crossPlatformPath = new LocalCrossPlatformPath(fileSystem);
     const argumentsValidator = new CliArgumentsValidator();
+    const argumentParser = new CliArgumentParser(logger);
 
     return new FileSystemSizeCheckerCli(
       directoryChecker,
@@ -23,6 +25,7 @@ export class AppFactory {
       crossPlatformPath,
       logger,
       argumentsValidator,
+      argumentParser,
     );
   }
 }

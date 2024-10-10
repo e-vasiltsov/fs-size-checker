@@ -4,6 +4,7 @@ import { SizeCalculator } from "./interfaces/size-calculator.interface";
 import { CrossPlatformPath } from "./interfaces/cross-platform-path .interface";
 import { CliArguments } from "./services/cli-arguments-validator";
 import { ArgumentsValidator } from "./interfaces/arguments-validator.interface";
+import { ArgumentParser } from "./interfaces/argument-parser.interface";
 
 export class FileSystemSizeCheckerCli {
   constructor(
@@ -12,13 +13,14 @@ export class FileSystemSizeCheckerCli {
     private crossPlatformPath: CrossPlatformPath,
     private logger: Logger,
     private argumentsValidator: ArgumentsValidator<CliArguments>,
+    private argumentsParser: ArgumentParser<string[]>,
   ) {}
 
   public execute(): void {
     try {
-      const validationResult = this.argumentsValidator.parseSafe(
-        process.argv.slice(2),
-      );
+      const parsedArguments = this.argumentsParser.parse(process.argv.slice(2));
+      const validationResult =
+        this.argumentsValidator.parseSafe(parsedArguments);
       if (!validationResult.success) {
         validationResult.errors.forEach((error) => {
           this.logger.error(error.message);

@@ -1,7 +1,7 @@
 {
   "name": "fs-size-checker",
   "description": "A CLI tool to check the size of a directory, file and compare it against a specified maximum size.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Yevgen Vasiltsov",
   "repository": {
     "type": "git",

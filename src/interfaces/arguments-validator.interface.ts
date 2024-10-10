@@ -1,3 +1,5 @@
+import { ParsedArguments } from "./parsed-arguments.interface";
+
 export type ValidationResult<T> = {
   success: boolean;
   data: T[];
@@ -8,5 +10,5 @@ export type ValidationResult<T> = {
 };
 
 export interface ArgumentsValidator<T> {
-  parseSafe(data: unknown): ValidationResult<T>;
+  parseSafe(data: ParsedArguments[]): ValidationResult<T>;
 }

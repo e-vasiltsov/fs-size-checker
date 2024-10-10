@@ -50,22 +50,32 @@ Add one of the following scripts to your `package.json`:
 
 Examples:
 
-1. Using a specific directory and size limit in KB:
+1. Using a specific directory and size limit in bytes:
 
 ```json
 {
   "scripts": {
-    "check-size": "fs-size-checker ./dist 50000"
+    "check-size": "fs-size-checker --path ./dist --max-size 50000 --unit B"
   }
 }
 ```
 
-2. Checking a specific file with a size limit in KB:
+2. Checking a specific file with a size limit in bytes:
 
 ```json
 {
   "scripts": {
-    "check-file-size": "fs-size-checker ./dist/index.js 1000"
+    "check-file-size": "fs-size-checker --path ./dist/index.js --max-size 1000 --unit B"
+  }
+}
+```
+
+3. You can also use positional arguments:
+
+```json
+{
+  "scripts": {
+    "check-file-size": "fs-size-checker ./dist 1000 B"
   }
 }
 ```
@@ -76,9 +86,12 @@ Run it with:
 npm run check-size
 ```
 
-Options:
-- `<path>`: The path to check. Can include directory and file matching.
-- `<max_size>`: The maximum allowed size (a positive number) in KB.
+#### Options
+
+- `--path` or `-p`: The path to check. Can include directory and file matching patterns. Can be specified multiple times for checking multiple paths.
+- `--max-size` or `-m`: The maximum allowed size (a positive number). Can be specified multiple times, corresponding to each path.
+- `--unit` or `-u`: The unit for the size ( B ). If not specified, defaults to B (bytes). Can be specified multiple times, corresponding to each path.
+- `--help` or `-h`: Display the help message.
 
 ## Development
 
