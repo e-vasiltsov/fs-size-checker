@@ -34,13 +34,34 @@ Legend:
 
 ## Installation
 
-Prefer to use it as a development dependency in your project:
+You can install fs-size-checker globally using npm:
 
+```bash
+npm install -g fs-size-checker
+```
+
+Or, if you prefer to use it as a development dependency in your project:
 ```bash
 npm install --save-dev fs-size-checker
 ```
 
 ## Usage
+
+### Basic Usage
+
+You can run fs-size-checker directly from the command line after installing it globally:
+
+```bash
+fs-size-checker <path> <max_size> <unit>
+```
+
+For example:
+
+```bash
+fs-size-checker ./dist 50000 B
+```
+
+This command checks if the ./dist directory exceeds 50000 B.
 
 ### Using as an npm script
 
@@ -65,7 +86,7 @@ Examples:
 ```json
 {
   "scripts": {
-    "check-file-size": "fs-size-checker --path ./dist/index.js --max-size 1000 --unit B"
+    "check-size": "fs-size-checker --path ./dist/index.js --max-size 1000 --unit B"
   }
 }
 ```
@@ -75,7 +96,7 @@ Examples:
 ```json
 {
   "scripts": {
-    "check-file-size": "fs-size-checker ./dist 1000 B"
+    "check-size": "fs-size-checker ./dist 1000 B"
   }
 }
 ```
