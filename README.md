@@ -7,8 +7,9 @@ A powerful CLI tool to check the size of files and directories.
 - [x] Check sizes of files and directories
 - [x] Set size limits and get warnings when exceeded
 - [x] Configurable via command-line arguments
+- [x] Cross-platform path handling (works on Windows, macOS, and Linux)
 - [ ] Configurable via a configuration file
-- [ ] Use regex patterns to match specific filesenhancement)*
+- [ ] Use regex patterns to match specific files
 - [ ] Colorized output for better readability
 - [ ] Support for multiple units of measurement (B, KB, MB, GB, TB)
 
@@ -114,6 +115,20 @@ npm run check-size
 - `--max-size` or `-m`: The maximum allowed size (a positive number). Can be specified multiple times, corresponding to each path.
 - `--unit` or `-u`: The unit for the size ( B ). If not specified, defaults to B (bytes). Can be specified multiple times, corresponding to each path.
 - `--help` or `-h`: Display the help message.
+
+#### Cross-Platform Path Support
+
+fs-size-checker supports cross-platform paths, so you can use it on Windows, macOS, and Linux without worrying about path separators:
+
+```bash
+# On Windows
+fs-size-checker --path C:\Users\YourName\Documents --max-size 10000 --unit B
+
+# On macOS or Linux
+fs-size-checker --path /home/yourname/documents --max-size 10000 --unit B
+```
+
+Both of these commands will work correctly on their respective platforms.
 
 ## Exit Codes and Error Handling
 
