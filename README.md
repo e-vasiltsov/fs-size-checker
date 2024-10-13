@@ -8,7 +8,7 @@ A powerful CLI tool to check the size of files and directories.
 - [x] Set size limits and get warnings when exceeded
 - [x] Configurable via command-line arguments
 - [ ] Configurable via a configuration file
-- [ ] Use regex patterns to match specific filesenhancement)*
+- [ ] Use regex patterns to match specific files
 - [ ] Colorized output for better readability
 - [ ] Support for multiple units of measurement (B, KB, MB, GB, TB)
 
