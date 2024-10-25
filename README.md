@@ -1,6 +1,6 @@
 # fs-size-checker
 
-A powerful CLI tool to check the size of files and directories.
+A powerful CLI tool for analyzing file and directory sizes. Signals errors via standard exit codes when specified size limits are exceeded, providing precise file system size management and seamless CI/CD integration.
 
 ## Features
 
