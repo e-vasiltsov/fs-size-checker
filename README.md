@@ -9,7 +9,7 @@ A powerful CLI tool for analyzing file and directory sizes. Signals errors via s
 - [x] Configurable via command-line arguments
 - [x] Cross-platform path handling (works on Windows, macOS, and Linux)
 - [ ] Configurable via a configuration file
-- [ ] Use regex patterns to match specific files
+- [x] Use regex patterns to match specific files
 - [x] Colorized output for better readability
 - [ ] Support for multiple units of measurement (B, KB, MB, GB, TB)
 
@@ -93,7 +93,39 @@ Examples:
 }
 ```
 
-3. You can also use positional arguments:
+3. Checking by specific paterns with a size limit in bytes:
+
+3.1 Check all JavaScript files in the 'dist' directory:
+
+```json
+{
+  "scripts": {
+    "check-size": "fs-size-checker --path 'dist/*.js' --max-size 500 --unit KB"
+  }
+}
+```
+
+3.2 Check all TypeScript files in the 'dist' directory and its subdirectories:
+
+```json
+{
+  "scripts": {
+    "check-size": "fs-size-checker --path 'dist/**/*.ts' --max-size 500 --unit KB"
+  }
+}
+```
+
+3.3 Check all JPEG and PNG images in the 'dist' directory and its subdirectories:
+
+```json
+{
+  "scripts": {
+    "check-size": "fs-size-checker --path 'dist/**/*.(jpeg|png)' --max-size 500 --unit KB"
+  }
+}
+```
+
+4. You can also use positional arguments:
 
 ```json
 {
