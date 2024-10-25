@@ -1,0 +1,8 @@
+# Ignore all hidden files
+.DS_Store
+.env
+.vscode/
+.idea/
+node_modules/
+npm-debug.log
+*.log
