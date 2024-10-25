@@ -1,3 +1,5 @@
+import { Colors } from "../services/color-formater";
+
 export interface MessageFormatter {
-  formatMessage(level: string, message: string): string;
+  formatMessage(level: Colors, message: string): string;
 }
