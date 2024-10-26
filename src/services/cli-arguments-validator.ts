@@ -10,6 +10,7 @@ export type CliArguments = {
   path: string;
   maxSize: number;
   unit: string;
+  ignore: string[];
 };
 
 export class CliArgumentsValidator implements ArgumentsValidator<CliArguments> {
@@ -22,7 +23,7 @@ export class CliArgumentsValidator implements ArgumentsValidator<CliArguments> {
       errors: [],
     };
 
-    const { path, maxSize, unit = "B" } = args[0];
+    const { path, maxSize, unit = "B", ignore = [] } = args[0];
 
     if (!path) {
       result.errors.push({
@@ -62,6 +63,7 @@ export class CliArgumentsValidator implements ArgumentsValidator<CliArguments> {
       path: path!,
       maxSize: Number(maxSize),
       unit: unit!,
+      ignore,
     });
 
     return result;

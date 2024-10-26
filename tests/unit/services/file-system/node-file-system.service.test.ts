@@ -84,7 +84,7 @@ describe("NodeFileSystem", () => {
 
   describe("getDirectorySize", () => {
     it("should return size of directory in bytes as bigint type", () => {
-      const files = fileSystem.getDirectorySize(testDir);
+      const files = fileSystem.getDirectorySize(testDir, []);
       expect(files).toStrictEqual(70n);
     });
   });

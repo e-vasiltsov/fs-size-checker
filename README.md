@@ -1,6 +1,6 @@
 # fs-size-checker
 
-A powerful CLI tool to check the size of files and directories.
+A powerful CLI tool for analyzing file and directory sizes. Signals errors via standard exit codes when specified size limits are exceeded, providing precise file system size management and seamless CI/CD integration.
 
 ## Features
 
@@ -9,7 +9,8 @@ A powerful CLI tool to check the size of files and directories.
 - [x] Configurable via command-line arguments
 - [x] Cross-platform path handling (works on Windows, macOS, and Linux)
 - [ ] Configurable via a configuration file
-- [ ] Use regex patterns to match specific files
+- [x] Use regex patterns to match specific files
+- [x] Ignore specific files or directories from size calculations.
 - [x] Colorized output for better readability
 - [ ] Support for multiple units of measurement (B, KB, MB, GB, TB)
 
@@ -54,16 +55,16 @@ npm install --save-dev fs-size-checker
 You can run fs-size-checker directly from the command line after installing it globally:
 
 ```bash
-fs-size-checker <path> <max_size> <unit>
+fs-size-checker <path> <max_size> <unit> <ignore>
 ```
 
 For example:
 
 ```bash
-fs-size-checker ./dist 50000 B
+fs-size-checker './dist' 50000 B
 ```
 
-This command checks if the ./dist directory exceeds 50000 B.
+This command checks if the `./dist` directory exceeds 50000 B.
 
 ### Using as an npm script
 
@@ -78,7 +79,7 @@ Examples:
 ```json
 {
   "scripts": {
-    "check-size": "fs-size-checker --path ./dist --max-size 50000 --unit B"
+    "check-size": "fs-size-checker --path './dist' --max-size 50000 --unit B"
   }
 }
 ```
@@ -88,17 +89,81 @@ Examples:
 ```json
 {
   "scripts": {
-    "check-size": "fs-size-checker --path ./dist/index.js --max-size 1000 --unit B"
+    "check-size": "fs-size-checker --path './dist/index.js' --max-size 1000 --unit B"
   }
 }
 ```
 
-3. You can also use positional arguments:
+3. Checking by specific paterns with a size limit in bytes:
+
+3.1 Check all JavaScript files in the 'dist' directory:
 
 ```json
 {
   "scripts": {
-    "check-size": "fs-size-checker ./dist 1000 B"
+    "check-size": "fs-size-checker --path 'dist/*.js' --max-size 500 --unit KB"
+  }
+}
+```
+
+3.2 Check all TypeScript files in the 'dist' directory and its subdirectories:
+
+```json
+{
+  "scripts": {
+    "check-size": "fs-size-checker --path 'dist/**/*.ts' --max-size 500 --unit KB"
+  }
+}
+```
+
+3.3 Check all JPEG and PNG images in the 'dist' directory and its subdirectories:
+
+```json
+{
+  "scripts": {
+    "check-size": "fs-size-checker --path 'dist/**/*.(jpeg|png)' --max-size 500 --unit KB"
+  }
+}
+```
+
+3.4 Check all chunked JavaScript files in the 'dist' directory that follow the pattern `chunk-*.js`:
+
+```json
+{
+  "scripts": {
+    "check-size": "fs-size-checker --path 'dist/chunk-*.js' --max-size 200 --unit KB"
+  }
+}
+```
+
+4. Using the `ignore` argument to exclude specific files or directories:
+
+4.1 Ignore a specific files (e.g., .DS_Store) while checking JavaScript files:
+
+```json
+{
+  "scripts": {
+    "check-size": "fs-size-checker --path 'dist' --max-size 1 --unit MB --ignore .DS_Store"
+  }
+}
+```
+
+4.2 Ignore multiple specific files and directories:
+
+```json
+{
+  "scripts": {
+    "check-size": "fs-size-checker --path 'dist' --max-size 1 --unit MB --ignore .DS_Store --ignore node_modules"
+  }
+}
+```
+
+5. You can also use positional arguments:
+
+```json
+{
+  "scripts": {
+    "check-size": "fs-size-checker './dist' 1000 B"
   }
 }
 ```
@@ -114,6 +179,7 @@ npm run check-size
 - `--path` or `-p`: The path to check. Can include directory and file matching patterns. Can be specified multiple times for checking multiple paths.
 - `--max-size` or `-m`: The maximum allowed size (a positive number). Can be specified multiple times, corresponding to each path.
 - `--unit` or `-u`: The unit for the size ( B ). If not specified, defaults to B (bytes). Can be specified multiple times, corresponding to each path.
+- `--ignore`, `-i` Ignore files/directories (can be used multiple times)
 - `--help` or `-h`: Display the help message.
 
 #### Cross-Platform Path Support
@@ -122,10 +188,10 @@ fs-size-checker supports cross-platform paths, so you can use it on Windows, mac
 
 ```bash
 # On Windows
-fs-size-checker --path C:\Users\YourName\Documents --max-size 10000 --unit B
+fs-size-checker --path 'C:\Users\YourName\Documents' --max-size 10000 --unit B
 
 # On macOS or Linux
-fs-size-checker --path /home/yourname/documents --max-size 10000 --unit B
+fs-size-checker --path '/home/yourname/documents' --max-size 10000 --unit B
 ```
 
 Both of these commands will work correctly on their respective platforms.
