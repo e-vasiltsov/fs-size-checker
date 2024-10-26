@@ -1,3 +1,3 @@
 export interface SizeCalculator {
-  calculateSize(path: string): bigint;
+  calculateSize(path: string, ignore: string[]): bigint;
 }

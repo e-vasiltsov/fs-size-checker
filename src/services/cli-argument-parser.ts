@@ -13,6 +13,7 @@ export class CliArgumentParser implements ArgumentParser<string[]> {
         path: { type: "string", short: "p" },
         "max-size": { type: "string", short: "m" },
         unit: { type: "string", short: "u" },
+        ignore: { type: "string", short: "i", multiple: true },
         help: { type: "boolean", short: "h" },
       },
       allowPositionals: true,
@@ -27,6 +28,7 @@ export class CliArgumentParser implements ArgumentParser<string[]> {
       path: values.path as string | undefined,
       maxSize: values["max-size"] as string | undefined,
       unit: values.unit as string | undefined,
+      ignore: values.ignore as string[] | undefined,
     };
 
     if (!result.path && positionals.length > 0) {
@@ -41,25 +43,32 @@ export class CliArgumentParser implements ArgumentParser<string[]> {
       result.unit = positionals[2];
     }
 
+    if (!result.ignore && positionals.length > 3) {
+      result.ignore = positionals[3] as unknown as string[];
+    }
+
     return [result];
   }
 
   private printUsage() {
     this.logger.info(`
-Usage: fs-size-checker [options] --path <path> --max-size <max_size> --unit <unit>
+Usage: fs-size-checker [options] --path <path> --max-size <max_size> --unit <unit> --ignore <ignore>
 
 Options:
   -p, --path <path>       The path (directory, file) to check
   -m, --max-size <size>   The maximum allowed size
   -u, --unit <unit>       The unit for the size (B) (default: B)
+  -i, --ignore            Ignore files/directories (can be used multiple times)
   -h, --help              Display this help message
 
 You can also use positional arguments:
-  fs-size-checker <path> <max_size> [unit]
+  fs-size-checker <path> <max_size> <unit> <ignore>
 
 Examples:
-  fs-size-checker --path ./dist --max-size 50 --unit B
-  fs-size-checker ./dist 50 B
+  fs-size-checker --path './dist' --max-size 50 --unit B
+  fs-size-checker './dist' 50 B
+  fs-size-checker --path 'dist' --max-size 1 --unit MB --ignore .DS_Store --ignore node_modules
+  fs-size-checker --path 'dist/**/*.(jpeg|png)' --max-size 500 --unit KB
   `);
   }
 }

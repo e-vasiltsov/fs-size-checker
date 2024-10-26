@@ -19,7 +19,7 @@ export class AppFactory {
       logger,
       argumentsValidator,
       argumentParser,
-      fileSystem
+      fileSystem,
     );
   }
 }

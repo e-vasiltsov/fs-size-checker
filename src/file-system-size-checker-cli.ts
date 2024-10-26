@@ -10,7 +10,7 @@ export class FileSystemSizeCheckerCli {
     private logger: Logger,
     private argumentsValidator: ArgumentsValidator<CliArguments>,
     private argumentsParser: ArgumentParser<string[]>,
-    private fileSystem: FileSystem
+    private fileSystem: FileSystem,
   ) {}
 
   public execute(): void {
@@ -26,10 +26,10 @@ export class FileSystemSizeCheckerCli {
         process.exit(1);
       }
 
-      const { path, maxSize } = validationResult.data.at(0)!;
+      const { path, maxSize, ignore } = validationResult.data.at(0)!;
 
       const sizeCalculator = new SizeCalculatorStrategyFactory(
-        this.fileSystem
+        this.fileSystem,
       ).createStrategy(path);
 
       if (sizeCalculator === null) {
@@ -37,11 +37,9 @@ export class FileSystemSizeCheckerCli {
         process.exit(1);
       }
 
-      const totalSizeInBytes = sizeCalculator.calculateSize(path)
+      const totalSizeInBytes = sizeCalculator.calculateSize(path, ignore);
 
-      this.logger.info(
-        `Total size of "${path}": ${totalSizeInBytes} bytes`,
-      );
+      this.logger.info(`Total size of "${path}": ${totalSizeInBytes} bytes`);
 
       if (totalSizeInBytes > BigInt(maxSize)) {
         this.logger.error(
