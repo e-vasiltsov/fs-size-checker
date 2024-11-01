@@ -1,7 +1,7 @@
 {
   "name": "fs-size-checker",
   "description": "A powerful CLI tool for analyzing file and directory sizes. Signals errors via standard exit codes when specified size limits are exceeded, providing precise file system size management and seamless CI/CD integration.",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "author": "Yevgen Vasiltsov",
   "repository": {
     "type": "git",
@@ -29,6 +29,10 @@
     "format": "prettier --write ./src",
     "format:check": "prettier --check ./src",
     "prepare": "husky"
+  },
+  "engines": {
+    "node": ">=16.17.0",
+    "npm": ">=8.0.0"
   },
   "files": [
     "./dist"
