@@ -48,7 +48,7 @@ fs-size-checker <path> <max_size> <unit> <ignore>
 Example:
 
 ```bash
-fs-size-checker './dist' 50000 B
+fs-size-checker ./dist 50000 B
 ```
 
 This command checks if the `./dist` directory exceeds 50000 B.
@@ -60,7 +60,7 @@ Add `fs-size-checker` to your `package.json` for automated checks:
 ```json
 {
   "scripts": {
-    "check-size": "fs-size-checker './dist' 50000 B"
+    "check-size": "fs-size-checker ./dist 50000 B"
   }
 }
 ```
@@ -76,13 +76,13 @@ Examples:
 1. Directory Size Check in Bytes:
 
     ```
-      fs-size-checker --path './dist' --max-size 50000 --unit B
+      fs-size-checker --path ./dist --max-size 50000 --unit B
     ```
 
 2. File Check:
 
     ```
-      fs-size-checker --path './dist/index.js' --max-size 1000 --unit B
+      fs-size-checker --path ./dist/index.js --max-size 1000 --unit B
     ```
 
 3. Checking by specific paterns with a size limit in bytes:
@@ -90,25 +90,25 @@ Examples:
     1. Check all JavaScript files in the 'dist' directory:
 
     ```
-      fs-size-checker --path 'dist/*.js' --max-size 500 --unit B
+      fs-size-checker --path "dist/*.js" --max-size 500 --unit B
     ```
 
     2. Check all TypeScript files in the 'dist' directory and its subdirectories:
 
     ```
-      fs-size-checker --path 'dist/**/*.ts' --max-size 500 --unit B
+      fs-size-checker --path "dist/**/*.ts" --max-size 500 --unit B
     ```
 
     3. Check all JPEG and PNG images in the 'dist' directory and its subdirectories:
 
     ```
-      fs-size-checker --path 'dist/**/*.(jpeg|png)' --max-size 500 --unit B
+      fs-size-checker --path "dist/**/*.(jpeg|png)" --max-size 500 --unit B
     ```
 
     4. Check all chunked JavaScript files in the 'dist' directory that follow the pattern `chunk-*.js`:
 
     ```
-      fs-size-checker --path 'dist/chunk-*.js' --max-size 200 --unit B
+      fs-size-checker --path "dist/chunk-*.js" --max-size 200 --unit B
     ```
 
 4. Using the `ignore` argument to exclude specific files or directories:
@@ -116,13 +116,13 @@ Examples:
     1. Ignore a specific files (e.g., .DS_Store) while checking JavaScript files:
 
     ```
-      fs-size-checker --path 'dist' --max-size 1 --unit MB --ignore .DS_Store
+      fs-size-checker --path dist --max-size 1 --unit MB --ignore .DS_Store
     ```
 
     2. Ignore multiple specific files and directories:
 
     ```
-      fs-size-checker --path 'dist' --max-size 1 --unit MB --ignore .DS_Store --ignore node_modules
+      fs-size-checker --path dist --max-size 1 --unit MB --ignore .DS_Store --ignore node_modules
     ```
 
 #### Options
@@ -139,10 +139,10 @@ fs-size-checker supports cross-platform paths, so you can use it on Windows, mac
 
 ```bash
 # On Windows
-fs-size-checker --path 'C:\Users\YourName\Documents' --max-size 10000 --unit B
+fs-size-checker --path C:\Users\YourName\Documents --max-size 10000 --unit B
 
 # On macOS or Linux
-fs-size-checker --path '/home/yourname/documents' --max-size 10000 --unit B
+fs-size-checker --path /home/yourname/documents --max-size 10000 --unit B
 ```
 
 Both of these commands will work correctly on their respective platforms.
