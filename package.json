@@ -30,6 +30,10 @@
     "format:check": "prettier --check ./src",
     "prepare": "husky"
   },
+  "engines": {
+    "node": ">=16.17.0",
+    "npm": ">=8.0.0"
+  },
   "files": [
     "./dist"
   ],
