@@ -19,6 +19,7 @@ A powerful CLI tool for analyzing file and directory sizes. Signals errors via s
 - [ ] Support for multiple units of measurement (B, KB, MB, GB, TB)
 
 Legend:
+
 - [x] Implemented feature
 - [ ] Planned feature
 
@@ -31,6 +32,7 @@ npm install -g fs-size-checker
 ```
 
 Or, if you prefer to use it as a development dependency in your project:
+
 ```bash
 npm install --save-dev fs-size-checker
 ```
@@ -75,55 +77,55 @@ Examples:
 
 1. Directory Size Check in Bytes:
 
-    ```
-      fs-size-checker --path ./dist --max-size 50000 --unit B
-    ```
+   ```
+     fs-size-checker --path ./dist --max-size 50000 --unit B
+   ```
 
 2. File Check:
 
-    ```
-      fs-size-checker --path ./dist/index.js --max-size 1000 --unit B
-    ```
+   ```
+     fs-size-checker --path ./dist/index.js --max-size 1000 --unit B
+   ```
 
 3. Checking by specific paterns with a size limit in bytes:
 
-    1. Check all JavaScript files in the 'dist' directory:
+   1. Check all JavaScript files in the 'dist' directory:
 
-    ```
-      fs-size-checker --path "dist/*.js" --max-size 500 --unit B
-    ```
+   ```
+     fs-size-checker --path "dist/*.js" --max-size 500 --unit B
+   ```
 
-    2. Check all TypeScript files in the 'dist' directory and its subdirectories:
+   2. Check all TypeScript files in the 'dist' directory and its subdirectories:
 
-    ```
-      fs-size-checker --path "dist/**/*.ts" --max-size 500 --unit B
-    ```
+   ```
+     fs-size-checker --path "dist/**/*.ts" --max-size 500 --unit B
+   ```
 
-    3. Check all JPEG and PNG images in the 'dist' directory and its subdirectories:
+   3. Check all JPEG and PNG images in the 'dist' directory and its subdirectories:
 
-    ```
-      fs-size-checker --path "dist/**/*.(jpeg|png)" --max-size 500 --unit B
-    ```
+   ```
+     fs-size-checker --path "dist/**/*.(jpeg|png)" --max-size 500 --unit B
+   ```
 
-    4. Check all chunked JavaScript files in the 'dist' directory that follow the pattern `chunk-*.js`:
+   4. Check all chunked JavaScript files in the 'dist' directory that follow the pattern `chunk-*.js`:
 
-    ```
-      fs-size-checker --path "dist/chunk-*.js" --max-size 200 --unit B
-    ```
+   ```
+     fs-size-checker --path "dist/chunk-*.js" --max-size 200 --unit B
+   ```
 
 4. Using the `ignore` argument to exclude specific files or directories:
 
-    1. Ignore a specific files (e.g., .DS_Store) while checking JavaScript files:
+   1. Ignore a specific files (e.g., .DS_Store) while checking JavaScript files:
 
-    ```
-      fs-size-checker --path dist --max-size 1 --unit MB --ignore .DS_Store
-    ```
+   ```
+     fs-size-checker --path dist --max-size 1 --unit MB --ignore .DS_Store
+   ```
 
-    2. Ignore multiple specific files and directories:
+   2. Ignore multiple specific files and directories:
 
-    ```
-      fs-size-checker --path dist --max-size 1 --unit MB --ignore .DS_Store --ignore node_modules
-    ```
+   ```
+     fs-size-checker --path dist --max-size 1 --unit MB --ignore .DS_Store --ignore node_modules
+   ```
 
 #### Options
 
@@ -178,6 +180,7 @@ When a size limit is exceeded, fs-size-checker will:
 3. Exit with code 1 after all checks are complete, if any limits were exceeded.
 
 This approach ensures that:
+
 - All specified paths are checked, even if earlier ones exceed their limits.
 - The tool provides immediate feedback for each exceeded limit.
 - Scripts or CI/CD pipelines can easily detect when any limit has been exceeded.
