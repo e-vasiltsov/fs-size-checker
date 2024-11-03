@@ -29,7 +29,7 @@
     "format": "prettier --write ./src README.md",
     "format:check": "prettier --check ./src README.md",
     "prepare": "husky",
-    "release": "release-it"
+    "release": "release-it --ci"
   },
   "engines": {
     "node": ">=16.17.0",
