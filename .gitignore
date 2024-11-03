@@ -20,3 +20,5 @@ npm-debug.log*
 
 # Ignore coverage directory (if using testing with coverage)
 coverage/
+
+.npmrc
