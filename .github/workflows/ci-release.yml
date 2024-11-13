@@ -38,7 +38,7 @@ jobs:
         git config --global user.name "GitHub Action"
     - name: Initialise the NPM config
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: npm config set //registry.npmjs.com/:_authToken=$NPM_TOKEN
+      run: npm config set //registry.npmjs.com/:_authToken=$NPM_AUTH_TOKEN
       env:
         NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: NPM Release
