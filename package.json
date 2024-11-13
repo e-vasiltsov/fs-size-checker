@@ -24,12 +24,12 @@
     "analysis"
   ],
   "scripts": {
-    "build": "rimraf dist && tsc",
+    "build": "tsc --noEmit && tsup",
     "test": "jest",
     "format": "prettier --write ./src README.md",
     "format:check": "prettier --check ./src README.md",
     "prepare": "husky",
-    "release": "release-it --ci"
+    "release": "release-it --ci"  
   },
   "engines": {
     "node": ">=16.17.0",
@@ -38,9 +38,8 @@
   "files": [
     "./dist"
   ],
-  "main": "./dist/bin/fs-size-checker.js",
   "bin": {
-    "fs-size-checker": "./dist/bin/fs-size-checker.js"
+    "fs-size-checker": "./dist/fs-size-checker.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
@@ -53,6 +52,7 @@
     "release-it": "^17.10.0",
     "rimraf": "^6.0.1",
     "ts-jest": "^29.2.5",
+    "tsup": "^8.3.5",
     "typescript": "^5.6.2"
   },
   "license": "MIT"
