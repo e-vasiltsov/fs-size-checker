@@ -41,6 +41,10 @@ jobs:
       run: npm config set //registry.npmjs.com/:_authToken=$NPM_AUTH_TOKEN
       env:
         NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    - name: QWE
+      run: echo $NPM_AUTH_TOKEN && echo "$NPM_AUTH_TOKEN"
+      env:
+        NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: NPM Release
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: npm run release
