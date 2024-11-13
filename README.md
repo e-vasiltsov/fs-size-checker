@@ -4,7 +4,7 @@
 </p>
 <br/>
 
-A powerful CLI tool for analyzing file and directory sizes. Signals errors via standard exit codes when specified size limits are exceeded, providing precise file system size management and seamless CI/CD integration.
+A lightweight CLI tool for analyzing file and directory sizes. Signals errors via standard exit codes when specified size limits are exceeded
 
 ## Features
 
