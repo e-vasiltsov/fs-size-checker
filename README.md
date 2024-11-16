@@ -2,6 +2,13 @@
   <img src="logo.png" width="200px" align="center" alt="FS size checker logo" />
   <h1 align="center">FS size checker</h1>
 </p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/fs-size-checker"><img src="https://img.shields.io/npm/v/fs-size-checker?color=blue&label=npm&logo=npm" alt="npm version"></a>
+  <a href="https://github.com/e-vasiltsov/fs-size-checker"><img src="https://img.shields.io/github/stars/e-vasiltsov/fs-size-checker?color=green&label=GitHub&logo=github" alt="GitHub stars"></a>
+  <a href="https://www.npmjs.com/package/fs-size-checker"><img src="https://img.shields.io/npm/dm/fs-size-checker?color=orange&label=downloads&logo=npm" alt="npm downloads"></a>
+</p>
+
 <br/>
 
 A lightweight CLI tool for analyzing file and directory sizes. Signals errors via standard exit codes when specified size limits are exceeded
