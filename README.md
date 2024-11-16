@@ -16,7 +16,7 @@ A lightweight CLI tool for analyzing file and directory sizes. Signals errors vi
 - [x] Use regex patterns to match specific files
 - [x] Ignore specific files or directories from size calculations.
 - [x] Colorized output for better readability
-- [ ] Support for multiple units of measurement (B, KB, MB, GB, TB)
+- [x] Support for multiple units of measurement (B, KB, MB, GB, TB)
 
 Legend:
 

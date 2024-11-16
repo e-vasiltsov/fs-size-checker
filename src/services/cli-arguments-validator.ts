@@ -4,7 +4,7 @@ import {
 } from "../interfaces/arguments-validator.interface";
 import { ParsedArguments } from "../interfaces/parsed-arguments.interface";
 
-const onlyNumbersRegExp = /^\d+$/;
+const onlyNumbersRegExp: RegExp = /^\d+(\.\d+)?$/;
 
 export type CliArguments = {
   path: string;
@@ -14,7 +14,7 @@ export type CliArguments = {
 };
 
 export class CliArgumentsValidator implements ArgumentsValidator<CliArguments> {
-  private readonly validUnits = ["B"];
+  private readonly validUnits = ["B", "KB", "MB", "GB", "TB"];
 
   parseSafe(args: ParsedArguments[]): ValidationResult<CliArguments> {
     const result: ValidationResult<CliArguments> = {
