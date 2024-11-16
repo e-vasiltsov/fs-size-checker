@@ -4,6 +4,8 @@ import { ArgumentsValidator } from "./interfaces/arguments-validator.interface";
 import { ArgumentParser } from "./interfaces/argument-parser.interface";
 import { FileSystem } from "./interfaces/file-system.interface";
 import { SizeCalculatorStrategyFactory } from "./services/size-calculator/size-calculator-strategy";
+import { SizeChecker } from "./interfaces/size-checker.interface";
+import { SizeConverter } from "./interfaces/size-converter.interface";
 
 export class FileSystemSizeCheckerCli {
   constructor(
@@ -11,6 +13,8 @@ export class FileSystemSizeCheckerCli {
     private argumentsValidator: ArgumentsValidator<CliArguments>,
     private argumentsParser: ArgumentParser<string[]>,
     private fileSystem: FileSystem,
+    private sizeChecker: SizeChecker,
+    private sizeConverter: SizeConverter,
   ) {}
 
   public execute(): void {
@@ -26,7 +30,7 @@ export class FileSystemSizeCheckerCli {
         process.exit(1);
       }
 
-      const { path, maxSize, ignore } = validationResult.data.at(0)!;
+      const { path, maxSize, ignore, unit } = validationResult.data.at(0)!;
 
       const sizeCalculator = new SizeCalculatorStrategyFactory(
         this.fileSystem,
@@ -39,11 +43,17 @@ export class FileSystemSizeCheckerCli {
 
       const totalSizeInBytes = sizeCalculator.calculateSize(path, ignore);
 
-      this.logger.info(`Total size of "${path}": ${totalSizeInBytes} bytes`);
+      this.logger.info(`Total size of "${path}": ${totalSizeInBytes}`);
 
-      if (totalSizeInBytes > BigInt(maxSize)) {
+      if (
+        !this.sizeChecker.compareSizeAgainstLimit(
+          totalSizeInBytes,
+          maxSize,
+          unit,
+        )
+      ) {
         this.logger.error(
-          `Total size of (${totalSizeInBytes} bytes) is more then max size (${maxSize} bytes)`,
+          `Total size of (${this.sizeConverter.formatSize(totalSizeInBytes, unit)}) is more then max size (${maxSize} ${unit}})`,
         );
         process.exit(1);
       }
