@@ -3,6 +3,7 @@
   "description": "A lightweight CLI tool for analyzing file and directory sizes. Signals errors via standard exit codes when specified size limits are exceeded",
   "version": "1.2.17",
   "author": "Yevgen Vasiltsov",
+  "homepage": "https://e-vasiltsov.github.io/fs-size-checker/",
   "repository": {
     "type": "git",
     "url": "https://github.com/e-vasiltsov/fs-size-checker"
