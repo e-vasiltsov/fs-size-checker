@@ -13,6 +13,16 @@
 
 A lightweight CLI tool for analyzing file and directory sizes. Signals errors via standard exit codes when specified size limits are exceeded
 
+---
+
+## ⭐ Support This Project  
+
+If you find this project useful, please consider giving it a **star** on [GitHub](https://github.com/e-vasiltsov/fs-size-checker)! 🌟  
+
+Your support helps others discover this project and keeps me motivated to improve it further. Thank you! 😊
+
+---
+
 ## Features
 
 - [x] Check sizes of files and directories
