@@ -15,9 +15,9 @@ A lightweight CLI tool for analyzing file and directory sizes. Signals errors vi
 
 ---
 
-## ⭐ Support This Project  
+## ⭐ Support This Project
 
-If you find this project useful, please consider giving it a **star** on [GitHub](https://github.com/e-vasiltsov/fs-size-checker)! 🌟  
+If you find this project useful, please consider giving it a **star** on [GitHub](https://github.com/e-vasiltsov/fs-size-checker)! 🌟
 
 Your support helps others discover this project and keeps me motivated to improve it further. Thank you! 😊
 
@@ -41,6 +41,14 @@ Legend:
 - [ ] Planned feature
 
 ## Installation
+
+### Use via npx (No Installation Required)
+
+You can use `fs-size-checker` directly with `npx` without installing it globally:
+
+```bash
+npx fs-size-checker <path> <max_size> <unit> <ignore>
+```
 
 You can install fs-size-checker globally using npm:
 
