@@ -26,17 +26,17 @@ jobs:
       run: npm run build
 
     - name: Release
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      if: startsWith(github.ref, 'refs/tags/') && github.event_name == 'release'
       run: |
         git config --global user.email "actions@github.com"
         git config --global user.name "GitHub Action"
     - name: Initialise the NPM config
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      if: startsWith(github.ref, 'refs/tags/') && github.event_name == 'release'
       run: npm config set //registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN
       env:
         NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: NPM Release
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      if: startsWith(github.ref, 'refs/tags/') && github.event_name == 'release'
       run: npm run release
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
