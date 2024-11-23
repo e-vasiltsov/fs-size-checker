@@ -20,12 +20,12 @@
     "size",
     "limit",
     "checker",
-    "typescript",
     "cli",
     "storage",
     "disk-usage",
     "optimization",
-    "monitoring"
+    "monitoring",
+    "maxSize"
   ],
   "scripts": {
     "build": "tsc --noEmit && tsup",
