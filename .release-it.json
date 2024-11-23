@@ -9,7 +9,7 @@
     "after:bump": "npx auto-changelog -p"
   },
   "github": {
-    "release": true
+    "release": false
   },
   "npm": {
     "publish": true
