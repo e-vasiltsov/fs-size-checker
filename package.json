@@ -11,19 +11,21 @@
   "keywords": [
     "fs-size-checker",
     "directory",
+    "bundle",
+    "build",
     "folder",
+    "check",
     "file",
+    "max",
     "size",
     "limit",
     "checker",
     "typescript",
     "cli",
-    "file-system",
     "storage",
     "disk-usage",
     "optimization",
-    "monitoring",
-    "analysis"
+    "monitoring"
   ],
   "scripts": {
     "build": "tsc --noEmit && tsup",
