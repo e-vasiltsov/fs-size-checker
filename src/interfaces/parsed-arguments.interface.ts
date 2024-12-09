@@ -3,4 +3,5 @@ export interface ParsedArguments {
   maxSize: string | undefined;
   unit: string | undefined;
   ignore: string[] | undefined;
+  config: string | undefined;
 }

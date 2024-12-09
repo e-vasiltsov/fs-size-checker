@@ -6,6 +6,7 @@ import { CliArgumentParser } from "../services/cli-argument-parser";
 import { ColorFormatter } from "../services/color-formater";
 import { SizeCheckerImpl } from "../services/size-checker";
 import { SizeConverterImpl } from "../services/size-converter";
+import { ConfigLoader } from "../utils/config-loader";
 
 export class AppFactory {
   static createCli(): FileSystemSizeCheckerCli {
@@ -18,6 +19,7 @@ export class AppFactory {
     const argumentParser = new CliArgumentParser(logger);
     const sizeConverter = new SizeConverterImpl();
     const sizeChecker = new SizeCheckerImpl(sizeConverter);
+    const config = new ConfigLoader(fileSystem, logger);
 
     return new FileSystemSizeCheckerCli(
       logger,
@@ -26,6 +28,7 @@ export class AppFactory {
       fileSystem,
       sizeChecker,
       sizeConverter,
+      config,
     );
   }
 }

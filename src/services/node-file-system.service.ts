@@ -143,7 +143,15 @@ export class NodeFileSystem implements FileSystem {
     return totalSize;
   }
 
-  private shouldRecurse(pattern: string): boolean {
+  currentlyWorkingPath(filePath: string) {
+    return path.join(process.cwd(), filePath);
+  }
+
+  readFile(filePath: string): string {
+    return fs.readFileSync(filePath, "utf-8");
+  }
+
+  shouldRecurse(pattern: string): boolean {
     return pattern.includes("/**/");
   }
 }

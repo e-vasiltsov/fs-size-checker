@@ -14,6 +14,7 @@ export class CliArgumentParser implements ArgumentParser<string[]> {
         "max-size": { type: "string", short: "m" },
         unit: { type: "string", short: "u" },
         ignore: { type: "string", short: "i", multiple: true },
+        config: { type: "string", short: "c" },
         help: { type: "boolean", short: "h" },
       },
       allowPositionals: true,
@@ -29,6 +30,7 @@ export class CliArgumentParser implements ArgumentParser<string[]> {
       maxSize: values["max-size"] as string | undefined,
       unit: values.unit as string | undefined,
       ignore: values.ignore as string[] | undefined,
+      config: values.config as string | undefined,
     };
 
     if (!result.path && positionals.length > 0) {
@@ -47,6 +49,10 @@ export class CliArgumentParser implements ArgumentParser<string[]> {
       result.ignore = positionals[3] as unknown as string[];
     }
 
+    if (!result.config && positionals.length > 4) {
+      result.config = positionals[4];
+    }
+
     return [result];
   }
 
@@ -59,16 +65,18 @@ Options:
   -m, --max-size <size>   The maximum allowed size
   -u, --unit <unit>       The unit for the size (B) (default: B)
   -i, --ignore            Ignore files/directories (can be used multiple times)
+  -c, --config            Path to a custom configuration json file
   -h, --help              Display this help message
 
 You can also use positional arguments:
-  fs-size-checker <path> <max_size> <unit> <ignore>
+  fs-size-checker <path> <max_size> <unit> <ignore> <config>
 
 Examples:
   fs-size-checker --path './dist' --max-size 50 --unit B
   fs-size-checker './dist' 50 B
   fs-size-checker --path 'dist' --max-size 1 --unit MB --ignore .DS_Store --ignore node_modules
   fs-size-checker --path 'dist/**/*.(jpeg|png)' --max-size 500 --unit KB
+  fs-size-checker --config fs-size-checker.json
   `);
   }
 }
