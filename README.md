@@ -29,11 +29,12 @@ Your support helps others discover this project and keeps me motivated to improv
 - [x] Set size limits and get warnings when exceeded
 - [x] Configurable via command-line arguments
 - [x] Cross-platform path handling (works on Windows, macOS, and Linux)
-- [ ] Configurable via a configuration file
+- [x] Configurable via a configuration file
 - [x] Use regex patterns to match specific files
 - [x] Ignore specific files or directories from size calculations.
 - [x] Colorized output for better readability
 - [x] Support for multiple units of measurement (B, KB, MB, GB, TB)
+- [x] Check sizes for multiple files or directories in a single run
 
 Legend:
 
