@@ -8,6 +8,13 @@ describe('SizeConverterImpl', () => {
         sizeConverter = new SizeConverterImpl();
     });
 
+    describe('supportedSizeUnits', () => {
+        it('should return all possible units', () => {
+           const supportedUnits =  sizeConverter.supportedSizeUnits();
+           expect(supportedUnits).toEqual(["B", "KB", "MB", "GB", "TB"])
+        });
+    });
+
     describe('convertToBytes', () => {
         it('should correctly convert integer sizes to bytes', () => {
             expect(sizeConverter.convertToBytes(1, 'B')).toBe(1);

@@ -158,7 +158,33 @@ Examples:
 - `--max-size` or `-m`: The maximum allowed size (a positive number). Can be specified multiple times, corresponding to each path.
 - `--unit` or `-u`: The unit for the size ( B ). If not specified, defaults to B (bytes). Can be specified multiple times, corresponding to each path.
 - `--ignore`, `-i` Ignore files/directories (can be used multiple times)
+- `-c, --config <path>`: Path to a custom configuration file
 - `--help` or `-h`: Display the help message.
+
+### Configuration File
+
+By default, `fs-size-checker` looks for a `fs-size-checker.json` file in the current directory. You can specify a custom configuration file using the `-c` or `--config` flag.
+
+Example `fs-size-checker.json`:
+
+```json
+{
+  "sizeCheckList": [
+    {
+      "path": "bundle.min.js",
+      "maxSize": 30,
+      "unit": "KB",
+      "ignore": []
+    },
+    {
+      "path": "dist",
+      "maxSize": 1,
+      "unit": "MB",
+      "ignore": [".DS_Store"]
+    }
+  ]
+}
+```
 
 #### Cross-Platform Path Support
 

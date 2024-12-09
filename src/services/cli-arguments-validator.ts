@@ -23,48 +23,49 @@ export class CliArgumentsValidator implements ArgumentsValidator<CliArguments> {
       errors: [],
     };
 
-    const { path, maxSize, unit = "B", ignore = [] } = args[0];
+    for (const { path, maxSize, unit = "B", ignore = [] } of args) {
+      if (!path) {
+        result.errors.push({
+          field: "path",
+          message: `Field path is required`,
+        });
+      }
 
-    if (!path) {
-      result.errors.push({
-        field: "path",
-        message: `Field path is required`,
+      if (!maxSize) {
+        result.errors.push({
+          field: "maxSize",
+          message: `Field maxSize is required`,
+        });
+      }
+
+      if (!onlyNumbersRegExp.test(maxSize as string)) {
+        result.errors.push({
+          field: "maxSize",
+          message: `Field maxSize should be a number. Value "${maxSize}" not acceptable`,
+        });
+      }
+
+      const upperCaseUnit = unit.toUpperCase();
+      if (!this.validUnits.includes(upperCaseUnit)) {
+        result.errors.push({
+          field: "unit",
+          message: `Field unit must be one of: [ ${this.validUnits.join(", ")} ]. Value "${unit}" not acceptable`,
+        });
+      }
+
+      if (result.errors.length) {
+        return result;
+      }
+
+      result.data.push({
+        path: path!,
+        maxSize: Number(maxSize),
+        unit: unit!,
+        ignore,
       });
-    }
-
-    if (!maxSize) {
-      result.errors.push({
-        field: "maxSize",
-        message: `Field maxSize is required`,
-      });
-    }
-
-    if (!onlyNumbersRegExp.test(maxSize as string)) {
-      result.errors.push({
-        field: "maxSize",
-        message: `Field maxSize should be a number`,
-      });
-    }
-
-    const upperCaseUnit = unit.toUpperCase();
-    if (!this.validUnits.includes(upperCaseUnit)) {
-      result.errors.push({
-        field: "unit",
-        message: `Field unit must be one of: [ ${this.validUnits.join(", ")} ]`,
-      });
-    }
-
-    if (result.errors.length) {
-      return result;
     }
 
     result.success = true;
-    result.data.push({
-      path: path!,
-      maxSize: Number(maxSize),
-      unit: unit!,
-      ignore,
-    });
 
     return result;
   }

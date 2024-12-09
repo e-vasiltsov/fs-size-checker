@@ -6,4 +6,6 @@ export interface FileSystem {
   getFileSize(path: string): bigint;
   extractRootFolder(pattern: string): string;
   getGlobFilesSize(pattern: string, ignoreList: string[]): bigint;
+  currentlyWorkingPath(path: string): string;
+  readFile(path: string): string;
 }
