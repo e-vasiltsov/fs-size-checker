@@ -1,5 +1,5 @@
 import { FileSystemSizeCheckerCli } from "../file-system-size-checker-cli";
-import { ConsoleLogger } from "../services/console-logger";
+import { ConsoleLogger } from "../utils/console-logger";
 import { CliArgumentsValidator } from "../services/cli-arguments-validator";
 import { NodeFileSystem } from "../services/node-file-system.service";
 import { CliArgumentParser } from "../services/cli-argument-parser";

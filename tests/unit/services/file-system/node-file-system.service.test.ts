@@ -90,7 +90,11 @@ describe("NodeFileSystem", () => {
 
     it("should return zero because all files ignored", () => {
       const files = fileSystem.getDirectorySize(testDir, [
-        "file1.txt", "file2.txt", "nestedFile1.txt", "nestedFile2.txt"]);
+        "file1.txt",
+        "file2.txt",
+        "nestedFile1.txt",
+        "nestedFile2.txt",
+      ]);
       expect(files).toBe(0n);
     });
   });
@@ -158,9 +162,9 @@ describe("NodeFileSystem", () => {
         pattern,
         [],
         true, // Recurse into subdirectories
-        ignoreList
+        ignoreList,
       );
-  
+
       expect(result).toContain(path.join(testDir, "file1.txt"));
       expect(result).toContain(path.join(testDir, "file2.txt"));
       expect(result).toContain(path.join(nestedDir, "nestedFile1.txt"));
@@ -169,14 +173,19 @@ describe("NodeFileSystem", () => {
     });
 
     it("should return length 0 because all file ignored", () => {
-     const pattern = "*.txt"; // Match all .txt files
-      const ignoreList: string[] = ["file1.txt", "file2.txt", "nestedFile1.txt", "nestedFile2.txt"];
+      const pattern = "*.txt"; // Match all .txt files
+      const ignoreList: string[] = [
+        "file1.txt",
+        "file2.txt",
+        "nestedFile1.txt",
+        "nestedFile2.txt",
+      ];
       const result = fileSystem.getFilesByRegExpPatern(
         testDir,
         pattern,
         [],
         true, // Recurse into subdirectories
-        ignoreList
+        ignoreList,
       );
 
       expect(result.length).toBe(0);
@@ -184,35 +193,35 @@ describe("NodeFileSystem", () => {
 
     it("should return files matching a specific pattern in nested directories when recursion is disabled", () => {
       const pattern = "*.txt"; // Match all .txt files
-       const ignoreList: string[] = [];
-       const result = fileSystem.getFilesByRegExpPatern(
-         testDir,
-         pattern,
-         [],
-         false,
-         ignoreList
-       );
- 
-       expect(result).toContain(path.join(testDir, "file1.txt"));
-       expect(result).toContain(path.join(testDir, "file2.txt"));
-       expect(result.length).toBe(2);
-     });
+      const ignoreList: string[] = [];
+      const result = fileSystem.getFilesByRegExpPatern(
+        testDir,
+        pattern,
+        [],
+        false,
+        ignoreList,
+      );
+
+      expect(result).toContain(path.join(testDir, "file1.txt"));
+      expect(result).toContain(path.join(testDir, "file2.txt"));
+      expect(result.length).toBe(2);
+    });
   });
-  
+
   describe("matchesPattern", () => {
     it("should return true for a file name that matches the pattern", () => {
       const fileName = "file1.txt";
       const pattern = "*.txt"; // Match any .txt file
       const result = fileSystem.matchesPattern(fileName, pattern);
-  
+
       expect(result).toBe(true);
     });
-  
+
     it("should return false for a file name that does not match the pattern", () => {
       const fileName = "file1.js";
       const pattern = "*.txt"; // Match any .txt file
       const result = fileSystem.matchesPattern(fileName, pattern);
-  
+
       expect(result).toBe(false);
     });
   });
@@ -220,13 +229,13 @@ describe("NodeFileSystem", () => {
   describe("getGlobFilesSize", () => {
     const testDir = path.join(__dirname, "mock-files");
     // const nestedDir = path.join(testDir, "nested-folder");
-  
+
     it("should calculate the total size of all files matching a glob pattern", () => {
       const globPattern = `${testDir}/**/*.txt`; // Match all .txt files recursively
       const ignoreList: string[] = [];
-  
+
       const totalSize = fileSystem.getGlobFilesSize(globPattern, ignoreList);
-  
+
       // Sizes: file1.txt (14), file2.txt (14), nestedFile1.txt (21), nestedFile2.txt (21)
       expect(totalSize).toBe(70n);
     });
@@ -234,9 +243,9 @@ describe("NodeFileSystem", () => {
     it("should calculate size of files in the root folder only when glob does not recurse", () => {
       const globPattern = `${testDir}/*.txt`; // Match .txt files only in the root directory
       const ignoreList: string[] = [];
-  
+
       const totalSize = fileSystem.getGlobFilesSize(globPattern, ignoreList);
-  
+
       // Sizes: file1.txt (14), file2.txt (14)
       expect(totalSize).toBe(28n);
     });
@@ -252,7 +261,7 @@ describe("NodeFileSystem", () => {
 
   describe("readFile", () => {
     it("should read files in the nested folder", () => {
-      const result = fileSystem.readFile(nestedDir + "/nestedFile1.txt");      
+      const result = fileSystem.readFile(nestedDir + "/nestedFile1.txt");
       expect(result).toBe("Nested File 1 content");
     });
   });

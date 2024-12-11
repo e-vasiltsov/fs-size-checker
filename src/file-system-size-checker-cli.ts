@@ -49,7 +49,9 @@ export class FileSystemSizeCheckerCli {
 
         const totalSizeInBytes = sizeCalculator.calculateSize(path, ignore);
 
-        this.logger.info(`Total size of "${path}": ${totalSizeInBytes}`);
+        this.logger.info(
+          `Total size of "${path}": (${this.sizeConverter.formatSize(totalSizeInBytes, unit)})`,
+        );
 
         if (
           !this.sizeChecker.compareSizeAgainstLimit(
