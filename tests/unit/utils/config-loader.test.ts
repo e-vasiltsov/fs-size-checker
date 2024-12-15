@@ -1,10 +1,13 @@
 import { FileSystem } from "../../../src/interfaces/file-system.interface";
 import { Config } from "../../../src/interfaces/config.interface";
 import { ConfigLoader } from "../../../src/utils/config-loader";
+import { ConsoleLogger } from "../../../src/utils/console-logger";
+import { Logger } from "../../../src/interfaces/logger.interface";
 
 describe("ConfigLoader", () => {
   let fileSystemMock: jest.Mocked<FileSystem>;
   let configLoader: Config;
+  let logger: Logger;
 
   beforeEach(() => {
     // Create a mocked instance of FileSystem
@@ -20,8 +23,9 @@ describe("ConfigLoader", () => {
       readFile: jest.fn(),
     };
 
+    logger = new ConsoleLogger();
     // Initialize ConfigLoader with the mocked FileSystem
-    configLoader = new ConfigLoader(fileSystemMock);
+    configLoader = new ConfigLoader(fileSystemMock, logger);
   });
 
   it("should load configuration from the default config file when no custom path is provided", () => {
@@ -35,7 +39,7 @@ describe("ConfigLoader", () => {
     const config = configLoader.loadConfig(undefined);
 
     expect(fileSystemMock.currentlyWorkingPath).toHaveBeenCalledWith(
-        ConfigLoader.DEFAULT_FILE_NAME
+      ConfigLoader.DEFAULT_FILE_NAME,
     );
     expect(fileSystemMock.isFile).toHaveBeenCalledWith(mockFilePath);
     expect(fileSystemMock.readFile).toHaveBeenCalledWith(mockFilePath);
@@ -52,7 +56,9 @@ describe("ConfigLoader", () => {
 
     const config = configLoader.loadConfig(customPath);
 
-    expect(fileSystemMock.currentlyWorkingPath).toHaveBeenCalledWith(customPath);
+    expect(fileSystemMock.currentlyWorkingPath).toHaveBeenCalledWith(
+      customPath,
+    );
     expect(fileSystemMock.isFile).toHaveBeenCalledWith(customPath);
     expect(fileSystemMock.readFile).toHaveBeenCalledWith(customPath);
     expect(config).toEqual(mockConfig);
@@ -67,7 +73,7 @@ describe("ConfigLoader", () => {
     const config = configLoader.loadConfig(undefined);
 
     expect(fileSystemMock.currentlyWorkingPath).toHaveBeenCalledWith(
-        ConfigLoader.DEFAULT_FILE_NAME
+      ConfigLoader.DEFAULT_FILE_NAME,
     );
     expect(fileSystemMock.isFile).toHaveBeenCalledWith(mockFilePath);
     expect(fileSystemMock.readFile).not.toHaveBeenCalled();

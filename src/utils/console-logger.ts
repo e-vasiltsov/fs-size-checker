@@ -8,25 +8,30 @@ type Options = Partial<{
 export class ConsoleLogger implements Logger {
   constructor(
     private options: Options = {},
-    private formatter: MessageFormatter,
+    private formatter?: MessageFormatter,
   ) {}
 
   info(message: string): void {
-    const formatted = this.formatter.formatMessage(
-      "yellow",
-      `${this.getServiceName()}INFO: ${message}`,
-    );
-    console.log(`${formatted}`);
+    if (this.formatter) {
+      message = this.formatter.formatMessage(
+        "yellow",
+        `${this.getServiceName()}INFO: ${message}`,
+      );
+    }
+
+    console.log(`${message}`);
   }
 
   error(message: string, data?: unknown): void {
-    const formatted = this.formatter.formatMessage(
-      "red",
-      `${this.getServiceName()}ERROR: ${message}`,
-    );
+    if (this.formatter) {
+      message = this.formatter.formatMessage(
+        "red",
+        `${this.getServiceName()}ERROR: ${message}`,
+      );
+    }
 
-    if (data) console.error(formatted, data);
-    else console.error(formatted);
+    if (data) console.error(message, data);
+    else console.error(message);
   }
 
   private getServiceName() {
