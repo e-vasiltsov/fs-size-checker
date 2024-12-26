@@ -15,6 +15,10 @@ A lightweight CLI tool for analyzing file and directory sizes. Signals errors vi
 
 ---
 
+<p align="center">
+  <img src="preview.gif" width="100%" align="center" alt="Preview video" />
+</p>
+
 ## Features
 
 - [x] Check sizes of files and directories
